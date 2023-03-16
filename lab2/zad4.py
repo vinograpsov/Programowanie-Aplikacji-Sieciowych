@@ -1,22 +1,20 @@
-import socket 
+import socket
+
+import socket
 
 sockIPv4 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 server_address = "127.0.0.1"
-server_port = 2902
+server_port = 2901
 
-
-try:
-    sockIPv4.connect((server_address,server_port))
-
-    sockIPv4.send("5".encode())
-    sockIPv4.send("+".encode())
-    sockIPv4.send("3".encode())
-
-    data = sockIPv4.recv(4096)
-    print(data.decode())
-
-
-
+try: 
+    mess = "test"
+    sockIPv4.sendto(mess.encode(),(server_address, server_port))
+    
+    data, server = sockIPv4.recvfrom(4096)
+    print("Server: ", data.decode())
 except Exception as e:
     print(e)
+
+
+sockIPv4.close()
