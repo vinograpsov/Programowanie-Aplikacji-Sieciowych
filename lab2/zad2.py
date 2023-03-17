@@ -2,7 +2,7 @@ import socket
 
 sockIPv4 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-serever_address = "212.182.24.27"
+serever_address = "127.0.0.1"
 serever_port = 2900
 
 try: 

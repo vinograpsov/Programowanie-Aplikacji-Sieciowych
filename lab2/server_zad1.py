@@ -15,14 +15,17 @@ while True:
     client, client_address = sockIPv4.accept()
     print ("[%s] Client %s connected ... " % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), client_address))
 
-    data = sockIPv4.recv(4069)
-    print(data.decode())
 
-    client.send(data.encode())
 
-    client.send(message.encode())
+    while True:
+        data = sockIPv4.recv(4069)
 
-    # Закрытие соединения с клиентом
+        if not data:
+            break
 
+        print("Client send ", data.decode())
+        server_answer = "Answer from server: " + str(data)
+    
+        client.send(data.encode())
 
 client.close()

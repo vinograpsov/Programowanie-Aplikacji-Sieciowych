@@ -42,7 +42,3 @@ print("closed ports: {}".format(closed_ports))
 
 print("error ports: {}".format(error_ports))
 
-
-
-
-# scanme.nmpa.org
