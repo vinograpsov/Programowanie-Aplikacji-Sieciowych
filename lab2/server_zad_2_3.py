@@ -18,14 +18,14 @@ while True:
 
 
     while True:
-        data = sockIPv4.recv(4069)
+        data = client.recv(4096)
 
         if not data:
             break
 
         print("Client send ", data.decode())
-        server_answer = "Answer from server: " + str(data)
+        server_answer = "Answer from server: " + str(data.decode())
     
-        client.send(data.encode())
+        client.send(server_answer.encode())
 
 client.close()

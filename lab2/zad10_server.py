@@ -27,13 +27,14 @@ try:
             try :
 
                 hostname = socket.gethostbyname(data)
-                answer = f"Host name of ip {data} is {socket.gethostbyaddr(data)[0]}"
+                answer = f"Host name of ip {data} is {socket.gethostbyname(data)}"
                 
                 sock.sendto(answer.encode(), address)
                 print ('[%s] Sent back to client %s.' % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), address))
 
             except socket.herror as e:
                 sent = sock.sendto("Sorry, an error occurred in gethostbyaddr".encode(), address)
+                print(e)
                 print ('[%s] Sent %s bytes bytes back to client %s.' % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), sent, address))
 finally:
     sock.close()

@@ -12,6 +12,6 @@ try:
         sockIPv4.send(hostname.encode())
 
         data = sockIPv4.recv(4096).decode()
-        print("Hostname is: ", data )
+        print(data)
 except Exception as e:
     print(e)
