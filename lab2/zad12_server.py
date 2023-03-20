@@ -33,8 +33,9 @@ except socket.error as msg:
 
 s.listen(1000)
 
-print ("[%s] TCP ECHO Server is waiting for incoming connections ... " % strftime("%Y-%m-%d %H:%M:%S", gmtime())
-)
+print ("[%s] TCP ECHO Server is waiting for incoming connections ... " % strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+
+
 while True:
 
     connection, client_address = s.accept()
