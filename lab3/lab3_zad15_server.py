@@ -66,6 +66,7 @@ try:
     while True:
 
         data, address = sock.recvfrom(1024)
+        data = data.decode()
         print ('[%s] Received %s bytes from client %s. Data: %s' % (
         strftime("%Y-%m-%d %H:%M:%S", gmtime()), len(data), address, data))
 
@@ -76,18 +77,18 @@ try:
 
             if tmp[0] == "zad15odpA":
                 answer = check_msgA_syntax(data)
-                sent = sock.sendto(answer, address)
+                sent = sock.sendto(answer.encode(), address)
                 print ('[%s] Sent %s bytes bytes back to client %s.' % (
                 strftime("%Y-%m-%d %H:%M:%S", gmtime()), sent, address))
 
             elif tmp[0] == "zad15odpB":
                 answer = check_msgB_syntax(data)
-                sent = sock.sendto(answer, address)
+                sent = sock.sendto(answer.encode(), address)
                 print ('[%s] Sent %s bytes bytes back to client %s.' % (
                 strftime("%Y-%m-%d %H:%M:%S", gmtime()), sent, address))
 
             else:
-                sent = sock.sendto("BAD_SYNTAX", address)
+                sent = sock.sendto("BAD_SYNTAX".encode(), address)
                 print ('[%s] Sent %s bytes bytes back to client %s.' % (
                 strftime("%Y-%m-%d %H:%M:%S", gmtime()), sent, address))
 finally:

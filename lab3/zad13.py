@@ -2,7 +2,7 @@ import socket
 
 server_address = ('127.0.0.1', 2909)
 
-datagram = "ed740b550024effd70726f6772616d6d696e6720696e20707974686f6e2069732066756e"
+datagram = "ed 74 0b 55 00 24 ef fd 70 72 6f 67 72 616d 6d 69 6e 67 20 69 6e 20 70 79 74 68 6f6e 20 69 73 20 66 75 6e".replace(" ","")
 
 source_port = int(datagram[0:4], 16)
 destination_port = int(datagram[4:8], 16)
@@ -10,7 +10,7 @@ length = int(datagram[8:12], 16)
 checksum = int(datagram[12:16], 16)
 data = bytes.fromhex(datagram[16:]).decode()
 
-message = f"zad14odp;src;{source_port};dst;{destination_port};data;{data}"
+message = f"zad13odp;src;{source_port};dst;{destination_port};data;{data}"
 
 print("source_port ",source_port)
 print("destination_port ", destination_port)
@@ -28,6 +28,7 @@ connected = sock.connect_ex(server_address)
 if connected == 0:
     sock.send(message.encode())
     answer = sock.recv(1024).decode()
+    print("server recived: ", answer)
 else:
     print("connection failed")
 
