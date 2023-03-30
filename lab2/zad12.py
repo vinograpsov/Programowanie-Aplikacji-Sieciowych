@@ -6,7 +6,7 @@ def recvall(sock, msg_len):
     bytes_rcvd = 0
 
     while bytes_rcvd < msg_len:
-        chunk = sock.recv(msg_len - bytes_rcvd)
+        chunk = sock.recv(min(msg_len - bytes_rcvd, 20))
 
         if not chunk:
             break
@@ -16,21 +16,30 @@ def recvall(sock, msg_len):
 
     return msg
 
+def sendall(sock, msg):
+    msg_len = len(msg)
+    bytes_sent = 0
+
+    while bytes_sent < msg_len:
+        chunk = msg[bytes_sent : bytes_sent + 20]
+        sent = sock.send(chunk.encode())
+        if not sent:
+            break
+        bytes_sent += sent
+
 HOST = '127.0.0.1'
 PORT = 2908
-MAX_PACKET_LENGTH = 20
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
     sock.connect((HOST, PORT))
 
-    message = input("Enter message (up to 20 characters): ")
-    # message = message[:20].ljust(20)
+    message = input("Enter message: ")
 
-    sock.sendall(message.encode())
+    sendall(sock, message)
 
-    response = recvall(sock, MAX_PACKET_LENGTH)
+    response = recvall(sock, len(message))
     print("Received from server: {}".format(response))
 
 except Exception as e:

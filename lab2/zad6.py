@@ -13,9 +13,6 @@ try:
         opierator = input("operator ")
         second = input("number ")
         
-
-        # message = f"{first} {opierator} {second}"
-        # sockIPv4.sendto(message.encode(),(server_address, server_port))
         sockIPv4.sendto(first.encode(),(server_address, server_port))
         sockIPv4.sendto(opierator.encode(),(server_address, server_port))
         sockIPv4.sendto(second.encode(),(server_address, server_port))
