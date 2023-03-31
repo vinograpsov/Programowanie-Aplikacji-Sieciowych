@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import socket, select
 from time import gmtime, strftime
 
@@ -35,6 +33,7 @@ while True:
             try:
                 data = sock.recv(4096)
                 if data:
+                    data = str("%Y-%m-%d %H:%M:%S", gmtime()).encode()
                     sock.send(data)
                     print ("[%s]" % (strftime("%Y-%m-%d %H:%M:%S", gmtime())))
 

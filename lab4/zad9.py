@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import socket, select, sys
 from time import gmtime, strftime
 
