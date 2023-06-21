@@ -1,0 +1,7 @@
+2023-06-22 00:26:40 : Server is listening on 127.0.0.1:8085
+2023-06-22 00:27:48 : Connected by ('127.0.0.1', 60344)
+2023-06-22 00:27:48 : Received data: Hello, server!
+2023-06-22 00:27:50 : Connected by ('127.0.0.1', 60345)
+2023-06-22 00:27:50 : Received data: Hello, server!
+2023-06-22 00:27:50 : Connected by ('127.0.0.1', 60346)
+2023-06-22 00:27:50 : Received data: Hello, server!
